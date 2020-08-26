@@ -1,4 +1,5 @@
-import smtplib, ssl, os, sys
+import smtplib, ssl
+import os
 
 # A SMPTP Connection will be secured from the beginning using SMTP_SSL()
 # For this code to work, your google account must have "Allow Less Secure Apps to ON"
@@ -25,7 +26,6 @@ This message is sent from Python.
 password = os.environ["EMAILPASS"]; #input("Type your password and press enter: ")
 
 def sendEmailTest():
-	sys.stdout.write("Sending Emails")
 	context = ssl.create_default_context()
 	with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
 	    server.login(sender_email, password)
