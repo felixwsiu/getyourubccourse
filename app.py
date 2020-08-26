@@ -1,4 +1,6 @@
 from flask import Flask, render_template   
+from scheduler import turnOnScheduler
+
 app = Flask(__name__)
 
 
@@ -11,5 +13,8 @@ def home():
 def hello_name(name):
     return "Hello {}!".format(name)
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+	turnOnScheduler()
+	app.run(debug=True)
+	
