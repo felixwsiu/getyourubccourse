@@ -11,7 +11,7 @@ smtp_server = "smtp.gmail.com"
 
 # Email Settings
 sender_email = "getyourubccourse@gmail.com" 
-receiver_email = "your@gmail.com"  
+receiver_email = "felixs1999@gmail.com"  
 
 message = """\
 Subject: Hi there

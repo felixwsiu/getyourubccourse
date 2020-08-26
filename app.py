@@ -1,5 +1,6 @@
 from flask import Flask, render_template   
 from scheduler import turnOnScheduler
+import emailer
 
 app = Flask(__name__)
 
@@ -16,5 +17,6 @@ def hello_name(name):
 
 if __name__ == '__main__':
 	turnOnScheduler()
+	emailer.sendEmailTest()
 	app.run(debug=True)
 	
