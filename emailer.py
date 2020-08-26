@@ -22,7 +22,7 @@ This message is sent from Python.
 
 # EMAILPASS is an ENV on heroku's servers. If you want to run this locally, you can simply replace it with
 # an input("")
-password = os.environ['EMAILPASS']; #input("Type your password and press enter: ")
+password = os.environ["EMAILPASS"]; #input("Type your password and press enter: ")
 
 def sendEmailTest():
 	context = ssl.create_default_context()
