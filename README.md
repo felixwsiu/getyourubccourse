@@ -27,6 +27,7 @@ Virtual environment for dependencies can be created by : python3 -m venv env
 ```
 $ pip install flask
 $ pip install gunicorn
+$ pip install beautifulsoup4
 ```
 
 Make sure project dependencies match requirements.txt after installation
