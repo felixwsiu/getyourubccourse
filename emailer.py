@@ -1,4 +1,4 @@
-import smtplib, ssl
+import smtplib, ssl, os
 
 # A SMPTP Connection will be secured from the beginning using SMTP_SSL()
 # For this code to work, your google account must have "Allow Less Secure Apps to ON"
