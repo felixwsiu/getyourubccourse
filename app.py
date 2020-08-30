@@ -1,5 +1,4 @@
 from flask import Flask, render_template   
-from scheduler import turnOnScheduler
 from threading import Thread
 import emailer
 
@@ -17,6 +16,4 @@ def hello_name(name):
 	return "Hello {}!".format(name)
 
 if __name__ == '__main__':
-	turnOnScheduler()
-	emailer.sendEmailTest()
 	app.run(debug=True)
