@@ -5,6 +5,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # Turns on a scheduler that is used to iterate over the course request list on a given interval
 # Scheduler will shut down upon exit
 def turnOnScheduler():
+	print("Scheduler is now turning on")
 	scheduler = BackgroundScheduler()
 	#Interation frequency can be changed here
 	scheduler.add_job(func=checkCoursesForUsers, trigger="interval", minutes=0.05)
