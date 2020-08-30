@@ -32,3 +32,9 @@ $ pip install APScheduler
 ```
 
 Make sure project dependencies match requirements.txt after installation
+
+## TODO List
+- Fix Heroku so it can actually send emails and use the scheduler
+- Use a cloud data base and link it with input (Register form) and output (course notifier iteration)
+- Emailer needs to be catered to database
+
