@@ -17,9 +17,9 @@ Project is created with:
 * Python version: 3.7.8
 * Dependencies can be found in requirements.txt
 
-Hosted on Heroku:  
+Hosted on Heroku with a production and staging:  
 Production @ https://getyourubccourse-pro.herokuapp.com/  
-Staging @ https://getyourubccourse-stage.herokuapp.com/
+
 	
 ## Setup
 Virtual environment for dependencies can be created by : python3 -m venv env
