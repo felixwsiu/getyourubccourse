@@ -8,8 +8,6 @@ import requests
 # @params {string} section : section number (eg. 001)
 # @returns {soup} soup: parse tree for the HTML
 def createHtmlSoup(dept, course, section):
-	print("https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept=" 
-		+ dept + "&course=" + course + "&section=" + section)
 	page = requests.get("https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept=" 
 		+ dept + "&course=" + course + "&section=" + section)
 	soup = BeautifulSoup(page.content, 'html.parser')
