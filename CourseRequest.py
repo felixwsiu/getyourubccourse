@@ -7,11 +7,12 @@
 
 class CourseRequest:
 
-	def __init__(self, dept, course, section, email, dateAdded):
+	def __init__(self, dept, course, section, email, dateAdded, id):
 		self.dept = dept
 		self.course = course
 		self.section = section
 		self.email = email
 		self.dateAdded = dateAdded
+		self.id = id
 
 

@@ -17,7 +17,7 @@ container = database.get_container_client(container_name)
 def getAllRequests():
 	requests = []
 	for item in container.query_items(query='SELECT * FROM c', enable_cross_partition_query=True):
-		requests.append(CourseRequest(item["dept"],item["course"],item["section"],item["email"],item["dateAdded"]))
+		requests.append(CourseRequest(item["dept"],item["course"],item["section"],item["email"],item["dateAdded"],item["id"]))
 	return requests
 
 # Adds a course request to the database
@@ -38,6 +38,7 @@ def addRequest(dept, course, section, email):
 
 # Removes a course request from the database
 # @params {string} id: unique id name for the representing request
-def deleteRequest(id):
-	container.delete_item(id, "w@gmail.com")
+# @params {string} email: user's email that is also used as the partition key for this container
+def deleteRequest(id, email):
+	container.delete_item(id, email)
 
