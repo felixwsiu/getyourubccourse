@@ -30,6 +30,7 @@ $ pip install Flask-WTF
 $ pip install gunicorn
 $ pip install beautifulsoup4
 $ pip install APScheduler
+$ pip install wtforms[email]
 ```
 
 Make sure project dependencies match requirements.txt after installation
