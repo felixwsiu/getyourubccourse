@@ -14,15 +14,16 @@ def checkCoursesForUsers():
 	for r in requests:
 		if coursescraper.isCourseSeatOpen(r.dept, r.course, r.section):
 			emailer.sendCourseSeatEmail(r.email, r.dept, r.course, r.section)
-		requestExpiryCheck(r.id, r.email, r.dateAdded)
+		requestExpiryCheck(r.id, r.email, r.dept, r.course, r.section, r.dateAdded)
 		
 
 # The dateAdded string will be converted to the date type to be compared to todays date
 # If it is greater than 30 (1 month), the request will expire and be deleted
 # @params {string} id: unique id name for the representing request
 # @params {string} email: user's email that is also used as the partition key for this container
-def requestExpiryCheck(id, email, dateAdded):
+def requestExpiryCheck(id, email, dept, course, section, dateAdded):
 	if (date.today() - datetime.strptime(dateAdded, "%Y-%m-%d").date()).days > 30:
 		databaseutil.deleteRequest(id,email)
+		databaseutil.sendDeletedCourseRequestEmail(email, dept, course, section)
 
 checkCoursesForUsers()
