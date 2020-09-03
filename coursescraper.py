@@ -53,6 +53,3 @@ def isCourseSeatOpen(dept, course, section):
 
 
 
-
-
-
