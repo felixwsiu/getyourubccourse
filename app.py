@@ -4,8 +4,6 @@ import coursescraper
 import emailer
 import databaseutil
 from forms import courseRequestForm
-import sys
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "<\x8e\xd5`\x87c\xc0\xee<s?\xe0\xe1x\x8a\x88X\x81\x99_\x83\x999w"
@@ -31,7 +29,7 @@ def courseSubmitSucess(form):
 
 	if coursescraper.isCourseValid(dept, course, section):
 		if databaseutil.doesNotDuplicate(dept, course, section, email):
-			sys.stdout.write(str("New Course Request : " + dept + course + " " + section + ". Email: " + email))
+			app.logger.info("New Course Request : " + dept + course + " " + section + ". Email: " + email + "\n")
 			databaseutil.addRequest(dept, course, section, email)
 			flash(dept + " " + course + " " + section +" was successfully added for you! 😊", "success")
 		else:
