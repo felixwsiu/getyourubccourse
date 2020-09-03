@@ -41,8 +41,8 @@ def addRequest(dept, course, section, email):
 # @params {string} course : course number (eg. 201)
 # @params {string} section : section number (eg. 001)
 # @params {string} email: email to send the notification
-# @returns {boolean} whether true if there is a duplicate request
-def checkDuplicate(dept, course, section, email):
+# @returns {boolean} whether true if there isnt a duplicate request
+def doesNotDuplicate(dept, course, section, email):
 	query = "SELECT * FROM c WHERE c.email = @email AND c.dept = @dept AND c.course = @course AND c.section = @section"
 	params = [
 		{"name":"@email" , "value": email},
@@ -52,8 +52,8 @@ def checkDuplicate(dept, course, section, email):
 	]
 	for item in container.query_items(query=query, parameters=params, enable_cross_partition_query=True):
 		if item:
-			return True
-	return False
+			return False
+	return True
 
 
 # Removes a course request from the database

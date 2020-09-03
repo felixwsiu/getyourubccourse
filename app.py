@@ -20,16 +20,30 @@ def errorFlashing(form):
 			if err == "Email is invalid.":
 				flash("Your email is invalid", "danger")
 
+# Will check if the course is valid, and duplicate request before adding the new request to the DB
+# @params {form} form: the course request form 
+def courseSubmitSucess(form):
+	dept = form.department.data
+	course = form.course.data
+	section = form.section.data
+	email = form.email.data
+
+	if coursescraper.isCourseValid(dept, course, section):
+		if databaseutil.doesNotDuplicate(dept, course, section, email):
+			app.logger.info("New Course Request : " + dept + course + " " + section + ". Email: " + email)
+			databaseutil.addRequest(dept, course, section, email)
+			flash(dept + " " + course + " " + section +" was successfully added for you! 😊", "success")
+		else:
+			flash("Course request is duplicated, you're covered! 😎", "warning")
+	else:
+		flash("Course was not valid, double check for typos! 😔", "danger")
+
 
 @app.route('/', methods=["GET","POST"])
 def home():
 	form = courseRequestForm()
 	if request.method == "POST" and form.validate_on_submit():
-		if coursescraper.isCourseValid(form.department.data, form.course.data, form.section.data):
-			databaseutil.addRequest(form.department.data, form.course.data, form.section.data, form.email.data)
-			flash(form.department.data + " " + form.course.data + " " + form.section .data +" was successfully added for you! 😊", "success")
-		else:
-			flash("Course was not valid, double check for typos! 😔", "danger")
+		courseSubmitSucess(form)
 	else:
 		errorFlashing(form)
 
