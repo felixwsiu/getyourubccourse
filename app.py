@@ -2,6 +2,7 @@ from flask import Flask, flash, render_template , request, redirect
 from threading import Thread
 import coursescraper
 import emailer
+import databaseutil
 from forms import courseRequestForm
 
 
@@ -24,10 +25,11 @@ def errorFlashing(form):
 def home():
 	form = courseRequestForm()
 	if request.method == "POST" and form.validate_on_submit():
-		if coursescraper.isCourseValid(form.dept.data, form.course.data, form.section.data):
-			flash("Course was successfully added to our system! 😊", "success")
+		if coursescraper.isCourseValid(form.department.data, form.course.data, form.section.data):
+			databaseutil.addRequest(form.department.data, form.course.data, form.section.data, form.email.data)
+			flash(form.department.data + " " + form.course.data + " " + form.section .data +" was successfully added for you! 😊", "success")
 		else:
-			flash("Course was not valid, double check the fields. 😔", "danger")
+			flash("Course was not valid, double check for typos! 😔", "danger")
 	else:
 		errorFlashing(form)
 
