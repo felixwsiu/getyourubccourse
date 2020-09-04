@@ -20,7 +20,7 @@ def getTotalNotificationsSent():
 
 
 # Adds one to the total notifications sent
-def addTotalNotificiationsSent():
+def addTotalNotificationsSent():
 	metric["totalNotifications"] = metric["totalNotifications"] + 1
 	container.upsert_item(metric)
 
