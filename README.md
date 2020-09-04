@@ -20,6 +20,10 @@ Project is created with:
 Hosted on Heroku with a production and staging:  
 Production @ https://getyourubccourse-pro.herokuapp.com/  
 
+Heroku free dynos are set to sleep with 30 minutes of inactivity, but our scheduler runs seperately on the Heroku Scheduler Addon so it will not be affected.
+However, I didn't want a 10 second cold boot on the loading of the app every time so I used : http://kaffeine.herokuapp.com/ 
+It will ping the heroku app every 30 minutes so it will never go to sleep
+
 	
 ## Setup
 Virtual environment for dependencies can be created by : python3 -m venv env
@@ -36,7 +40,9 @@ $ pip install wtforms[email]
 Make sure project dependencies match requirements.txt after installation
 
 ## TODO List
-- Fix Heroku so it can actually send emails and use the scheduler
-- Use a cloud data base and link it with input (Register form) and output (course notifier iteration)
-- Emailer needs to be catered to database
+- Metrics for emails, active users etc (Footer or header toolbar to display)
+- A way to remove your request from the list (eg. User may get in the course), maybe a page that can login with a unique code and email to check on
+ all requests that are related to the user. Emails should also have a link to removing the request so they can stop the spam
+- A premium service using paypal for users to have faster polling, more maximum requests, sms capability
+- Make UX/UI better, change the background maybe
 
