@@ -35,6 +35,7 @@ $ pip install gunicorn
 $ pip install beautifulsoup4
 $ pip install APScheduler
 $ pip install wtforms[email]
+$ pip install Flask_Bootstrap4
 ```
 
 Make sure project dependencies match requirements.txt after installation
