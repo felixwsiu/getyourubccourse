@@ -3,6 +3,7 @@ import databaseutil
 import coursescraper
 import emailer
 import sys
+import metrics
 #Scheduler.py will be run on Heroku Scheduler with 10 minute intervals
 
 
@@ -16,6 +17,7 @@ def checkCoursesForUsers():
 		if coursescraper.isCourseSeatOpen(r.dept, r.course, r.section):
 			sys.stdout.write("Sending Course Seat Email: " + r.dept + r.course + " " + r.section + ". Email: " + r.email + "\n")
 			emailer.sendCourseSeatEmail(r.email, r.dept, r.course, r.section)
+			metrics.addTotalNotificationsSent()
 		requestExpiryCheck(r.id, r.email, r.dept, r.course, r.section, r.dateAdded)
 		
 

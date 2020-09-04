@@ -3,6 +3,7 @@ from threading import Thread
 import coursescraper
 import emailer
 import databaseutil
+import metrics
 from forms import courseRequestForm
 
 app = Flask(__name__)
@@ -41,12 +42,14 @@ def courseSubmitSucess(form):
 @app.route('/', methods=["GET","POST"])
 def home():
 	form = courseRequestForm()
+	seats = metrics.getTotalNotificationsSent()
+	courses = len(databaseutil.getAllRequests())
 	if request.method == "POST" and form.validate_on_submit():
 		courseSubmitSucess(form)
 	else:
 		errorFlashing(form)
 
-	return render_template("home.html", form=form)
+	return render_template("home.html", form=form, seats=seats, courses=courses)
 
 
 

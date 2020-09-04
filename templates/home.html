@@ -2,12 +2,22 @@
   <link href="{{ url_for('static',filename='style/homepage.css') }}" type="text/css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
-<body class="d-flex align-items-center">
-  <div class="container">
-    <div class="row align-items-center">
-        <div class="card card-signin mx-auto col-lg-5">
+<body class="d-flex flex-column mb-5">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1">Get Your UBC Course</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav float-right">
+        <a class="nav-item nav-link active" href="">Home </a> 
+        <a class="nav-item nav-link active" href="info">Info</a> 
+        <a class="nav-item nav-link disabled" href="#">Premium</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5 mb-5">
+    <div class="row align-items-center mt-5">
+        <div class="card card-signin mx-auto mt-5 mb-5 col-lg-5">
           <div class="card-body">
-            <h5 class="card-title text-center font-weight-bold">😈 Get Your UBC Course 😈</h5>
+            <h5 class="card-title text-center font-weight-bold">😈 Course Request Form 😈</h5>
             <form class="form-signin" method="post" novalidate>
               {{ form.hidden_tag() }}
               <div class="form-label-group">
@@ -47,5 +57,13 @@
           </div>
         </div>
     </div>
+  </div>
+  <div class="d-flex flex-row-reverse align-items-end mt-5">
+    <button type="button" class="btn btn-light m-2 mt-5">
+      Seats Found: <span class="badge badge-light">{{seats}}</span>
+    </button>
+    <button type="button" class="btn btn-light m-2 mt-5">
+      Courses Being Tracked: <span class="badge badge-light">{{courses}}</span>
+    </button>
   </div>
 </body>
