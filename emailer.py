@@ -72,7 +72,7 @@ def sendDeletedCourseRequestEmail(receiver_email, dept, course, section):
 			 <body>
 				 <h2>Wow!</h2>
 				 <h3>Your course request has expired! Still haven't got into your course? You're going to have to request again :( </h3>
-				 <h3>Link to the site: </h3>
+				 <h3>Link to the site: https://getyourubccourse-pro.herokuapp.com</h3>
 				 <h3>Goodluck on getting in your course!</h3>
 				 <h4>	- GetYourUBCCourse </h4>
 				 <p>
