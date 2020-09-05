@@ -47,9 +47,6 @@ ACCOUNT_KEY : This is the primary key of your Azure Cosmos DB Account
 Make sure project dependencies match requirements.txt after installation
 
 ## TODO List
-- Metrics for emails, active users etc (Footer or header toolbar to display)
-- A way to remove your request from the list (eg. User may get in the course), maybe a page that can login with a unique code and email to check on
- all requests that are related to the user. Emails should also have a link to removing the request so they can stop the spam
 - A premium service using paypal for users to have faster polling, more maximum requests, sms capability
 - Make UX/UI better, change the background maybe
 
