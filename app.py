@@ -48,7 +48,7 @@ def courseRemoveSuccess(form):
 		databaseutil.deleteRequest(courserequest["id"],courserequest["email"])
 		flash("Your request was successfully removed! 😊", ["success","deregister"])
 	else:
-		flash("Couldn't find a course request under that id! 😔" ,["danger","deregister"])
+		flash("Couldn't find a course request under that ID! 😔" ,["danger","deregister"])
 
 
 @app.route('/', methods=["GET","POST"])
