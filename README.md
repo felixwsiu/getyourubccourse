@@ -37,6 +37,13 @@ $ pip install APScheduler
 $ pip install wtforms[email]
 ```
 
+Some environmental variables will be needed, please set these to run this project locally:
+```
+EMAILPASS : This is the password of the email account set in emailer.py
+ACCOUNT_URI : This is the URI of your Azure Cosmos DB Account
+ACCOUNT_KEY : This is the primary key of your Azure Cosmos DB Account
+```
+
 Make sure project dependencies match requirements.txt after installation
 
 ## TODO List
