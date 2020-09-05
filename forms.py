@@ -8,3 +8,8 @@ class courseRequestForm(FlaskForm):
 	course = StringField("Course Number", validators=[DataRequired()])
 	section = StringField("Section Number", validators=[DataRequired()])
 	register = SubmitField("Register")
+
+
+class removeRequestForm(FlaskForm):
+	id = StringField("Request Reference ID", validators=[DataRequired("A Request Reference ID is required.")])
+	remove = SubmitField("Remove Request")

@@ -26,13 +26,14 @@ password = os.environ["EMAILPASS"]; #input("Type your password and press enter: 
 # @params {string} dept : department of the course (eg. CPSC)
 # @params {string} course : course number (eg. 201)
 # @params {string} section : section number (eg. 001)
-def sendCourseSeatEmail(receiver_email, dept, course, section):
+def sendCourseSeatEmail(receiver_email, dept, course, section, id):
 	html = """
 		 <html>
 			 <body>
 				 <h2>Nice!</h2>
 				 <h3>One or more seats has opened up in your desired course, register as soon as possible to snatch it away :) </h3>
 				 <h3>Link to your course: https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept={dept}&course={course}&section={section}
+				 <h3>Request Reference ID: {id}
 				 <h3>Goodluck on your studies!</h3>
 				 <h4>	- GetYourUBCCourse </h4>
 				 <p>
@@ -40,7 +41,7 @@ def sendCourseSeatEmail(receiver_email, dept, course, section):
 				 </p>
 			 </body>
 		 </html>
-	""".format(dept=dept,course=course,section=section)
+	""".format(dept=dept,course=course,section=section,id=id)
 
 	msgRoot = MIMEMultipart('related')
 	msgRoot["Subject"] = f"GetYourUBCCourse - A Seat Has Opened Up In : {dept} {course} {section}"
@@ -106,3 +107,4 @@ def loginAndSend(receiver_email,msgRoot):
 	with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
 	    server.login(sender_email, password)
 	    server.sendmail(sender_email, receiver_email, msgRoot.as_string())
+

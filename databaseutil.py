@@ -20,6 +20,17 @@ def getAllRequests():
 		requests.append(CourseRequest(item["dept"],item["course"],item["section"],item["email"],item["dateAdded"],item["id"]))
 	return requests
 
+
+# Returns a course request with the given id
+# @params {string} id: the id of the course request
+# @returns {CourseRequest or boolean} : course request from the db, returns false if the course could not be found
+def getCourseRequest(id):
+	for item in container.read_all_items():
+		if item["id"] == id:
+			return item
+	return False
+
+
 # Adds a course request to the database
 # @params {string} dept : department of the course (eg. CPSC)
 # @params {string} course : course number (eg. 201)
@@ -61,4 +72,3 @@ def doesNotDuplicate(dept, course, section, email):
 # @params {string} email: user's email that is also used as the partition key for this container
 def deleteRequest(id, email):
 	container.delete_item(id, email)
-

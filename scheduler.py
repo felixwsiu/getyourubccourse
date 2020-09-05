@@ -16,7 +16,7 @@ def checkCoursesForUsers():
 	for r in requests:
 		if coursescraper.isCourseSeatOpen(r.dept, r.course, r.section):
 			sys.stdout.write("Sending Course Seat Email: " + r.dept + r.course + " " + r.section + ". Email: " + r.email + "\n")
-			emailer.sendCourseSeatEmail(r.email, r.dept, r.course, r.section)
+			emailer.sendCourseSeatEmail(r.email, r.dept, r.course, r.section, r.id)
 			metrics.addTotalNotificationsSent()
 		requestExpiryCheck(r.id, r.email, r.dept, r.course, r.section, r.dateAdded)
 		
