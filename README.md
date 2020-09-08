@@ -48,5 +48,11 @@ Make sure project dependencies match requirements.txt after installation
 
 ## TODO List
 - A premium service using paypal for users to have faster polling, more maximum requests, sms capability
-- Make UX/UI better, change the background maybe
+	- Premium service will be activated for an email and can be priced per year (not by course)
+- Option to send email (or show on UI) to see all current requests that the user has and their respective ID's so they can remove them
+- Make UX/UI better, change the background to UBC
+- Premium service page and a premium service metrics counter (orange color scheme)
+- Change the information section to the front with steps to get it working, and create a standalone page for FAQ / INFO
+- Logo to put on navbar and maybe a footer for legitness
+- Instagram page / SEO for google 
 
