@@ -55,4 +55,6 @@ Make sure project dependencies match requirements.txt after installation
 - Change the information section to the front with steps to get it working, and create a standalone page for FAQ / INFO
 - Logo to put on navbar and maybe a footer for legitness
 - Instagram page / SEO for google 
+- Add an image onto README
+- Once all is finished, give it a real domain :) 
 
