@@ -17,7 +17,7 @@ def checkCoursesForUsers():
 	# over due requests will be deleted to clean up DB
 	delete = []
 	for r in requests:
-		if coursescraper.isCourseSeatOpen(r.dept, r.course, r.section):
+		if coursescraper.isCourseSeatOpen(r.dept, r.course, r.section) and r.premium == True:
 			sys.stdout.write("Sending Course Seat Email: " + r.dept + r.course + " " + r.section + ". Email: " + r.email + "\n")
 			emailer.sendCourseSeatEmail(r.email, r.dept, r.course, r.section, r.id)
 			metrics.addTotalNotificationsSent()
