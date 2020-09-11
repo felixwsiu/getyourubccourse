@@ -3,18 +3,22 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=SB_CLIENT_ID"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+  </script>
   <div class="container-fluid mx-auto">
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light bg-light col mb-5">
         <a class="navbar-brand mb-0 h1">Get Your UBC Course</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="btn btn-primary m-2" href="" role="button">Home</a>
-            <a class="btn btn-primary m-2 disabled" href="" role="button">Premium</a>
+            <a class="btn btn-primary m-2" href="/" role="button">Home</a>
+            <a class="btn btn-warning m-2" href="premium" role="button">Premium</a>
           </div>
         </div>
         <p class="badge badge-primary m-2 mr-5 p-2 ">{{seats}} Seats Found For Students So Far! </p>
         <p class="badge badge-primary m-2 mr-5 p-2 ">Currently {{courses}} Courses Are Being Tracked!</p>
+        <p class="badge badge-warning m-2 mr-5 p-2 ">{{premiumusers}} Students Are Polling At Light-Speed!</p>
       </nav>
     </div>
     <div class="row">
@@ -71,6 +75,8 @@
             <p class="text-center font-weight-bold"> How do I use this tool? </p>
             <p class="text-left"> 1) Fill out all the fields for the Course Request Form </p>
             <p class="text-left"> 2) Sit back, Relax 🏖, and wait for an email from us! </p>
+            <br>
+            <p class="text-center"> <b>Note:</b> Free users can have a max of <b>3</b> course requests that expire after <b>1</b> month of polling </p>
           </div>
         </div>
 

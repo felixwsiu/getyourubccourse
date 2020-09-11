@@ -5,7 +5,7 @@ import emailer
 import databaseutil
 import metrics
 import premiumutil
-from forms import courseRequestForm, removeRequestForm
+from forms import courseRequestForm, removeRequestForm, premiumForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "<\x8e\xd5`\x87c\xc0\xee<s?\xe0\xe1x\x8a\x88X\x81\x99_\x83\x999w"
@@ -69,6 +69,7 @@ def home():
 
 	seats = metrics.getTotalNotificationsSent()
 	courses = len(databaseutil.getAllRequests())
+	premiumusers = len(premiumutil.getAllUsers())
 	if request.method == "POST" and request.form["submit"] == "register" and crform.validate_on_submit():
 		courseSubmitSuccess(crform)
 	else:
@@ -80,10 +81,16 @@ def home():
 	else:
 		errorFlashing(rrform)
 
-	return render_template("home.html", crform=crform, seats=seats, courses=courses, rrform=rrform)
+	return render_template("home.html", crform=crform, seats=seats, courses=courses, premiumusers=premiumusers, rrform=rrform)
 
 
-
+@app.route('/premium', methods=["GET","POST"])
+def premium():
+	pform = premiumForm()
+	seats = metrics.getTotalNotificationsSent()
+	courses = len(databaseutil.getAllRequests())
+	premiumusers = len(premiumutil.getAllUsers())
+	return render_template("premium.html", seats=seats, courses=courses, premiumusers=premiumusers, pform=pform)
 
 if __name__ == '__main__':
 	app.run(debug=True)
