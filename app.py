@@ -36,8 +36,6 @@ def courseSubmitSuccess(form):
 	else:
 		premium = False;
 
-	print(premium)
-
 	if coursescraper.isCourseValid(dept, course, section):
 		if (not databaseutil.isMaxRequests(email)) or premium:
 			if databaseutil.doesNotDuplicate(dept, course, section, email):

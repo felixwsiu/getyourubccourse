@@ -37,12 +37,11 @@ def requestExpiryCheck(id, email, dept, course, section, dateAdded):
 # Iterates through premium users and remove their status if it has expired
 def requestPremiumExpiryCheck():
 	users = premiumutil.getAllUsers()
-	print(users)
 	for user in users:
-		print((date.today() - datetime.strptime(user[1], "%Y-%m-%d").date()).days)
 		if (date.today() - datetime.strptime(user[1], "%Y-%m-%d").date()).days > premiumexpiry:
 			sys.stdout.write("Deleting Premium User : " + user[0] + "\n")
 			premiumutil.deletePremiumUser(user[0])
+			emailer.sendPremiumExpiryEmail(user[0])
 
 
 checkCoursesForUsers()
