@@ -48,3 +48,4 @@ def addPremiumUser(email):
     		"dateAdded": str(date.today())
         }
     )
+

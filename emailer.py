@@ -137,6 +137,41 @@ def sendPremiumExpiryEmail(receiver_email):
 
 	loginAndSend(receiver_email,msgRoot)
 
+# Sends an email to a user that has bought premium status
+# @params {string} receiver_email : email of the receipient user
+def sendPremiumRegisterEmail(receiver_email):
+	html = """
+		 <html>
+			 <body>
+				 <h2>Congratulations!</h2>
+				 <p>Your 👑 Premium Status 👑 is now in effect for a full year!</p>
+				 <p>You now have unlimited course requests and lightning fast course polling to snatch seats quick! </p>
+				 <p>Once again, thank you for using our service!</p>
+				 <p>Kind regards,</p>
+				 <p>	- GetYourUBCCourse </p>
+				 <p>
+				 	<img src="cid:image1">
+				 </p>
+			 </body>
+		 </html>
+	"""
+
+	msgRoot = MIMEMultipart('related')
+	msgRoot["Subject"] = f"GetYourUBCCourse - Confirmation for Premium Status Purchase"
+
+
+	msgHtml = MIMEText(html,"html")
+
+	img = open("emailpic/king.jpg", "rb").read()
+	msgImg = MIMEImage(img, "jpg")
+	msgImg.add_header("Content-ID", "<image1>")
+	msgImg.add_header("Content-Disposition", "inline", filename="emailpic/deleted.jpg")
+
+	msgRoot.attach(msgHtml)
+	msgRoot.attach(msgImg)
+
+	loginAndSend(receiver_email,msgRoot)
+
 
 # Establishes a connection and logins in to the email server, then sends the msgRoot as a string
 # @params {string} receiver_email : email of the receipient user
@@ -147,6 +182,3 @@ def loginAndSend(receiver_email,msgRoot):
 	    server.login(sender_email, password)
 	    server.sendmail(sender_email, receiver_email, msgRoot.as_string())
 
-
-
-sendPremiumExpiryEmail("felixs1999@gmail.com")
