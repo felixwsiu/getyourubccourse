@@ -2,109 +2,111 @@
   <link href="{{ url_for('static',filename='style/homepage.css') }}" type="text/css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
-<div class="container-fluid mx-auto">
-  <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light col mb-5">
-      <a class="navbar-brand mb-0 h1">Get Your UBC Course</a>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="btn btn-primary m-2" href="" role="button">Home</a>
-          <a class="btn btn-primary m-2 disabled" href="" role="button">Premium</a>
+<body>
+  <div class="container-fluid mx-auto">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light col mb-5">
+        <a class="navbar-brand mb-0 h1">Get Your UBC Course</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="btn btn-primary m-2" href="" role="button">Home</a>
+            <a class="btn btn-primary m-2 disabled" href="" role="button">Premium</a>
+          </div>
         </div>
-      </div>
-      <p class="badge badge-primary m-2 mr-5 p-2 ">{{seats}} Seats Found For Students So Far! </p>
-      <p class="badge badge-primary m-2 mr-5 p-2 ">Currently {{courses}} Courses Are Being Tracked!</p>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="card card-signin ml-auto mt-3 mb-5 col-lg-6">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">📋 Course Request Form 📋</h5>
-          <form class="form-signin mt-5 mb-5" method="post" novalidate>
-            {{ crform.hidden_tag() }}
-            <div class="form-label-group">
-              {{crform.email(class="form-control", placeholder="Email")}}
-              {{crform.email.label}}
-            </div>
+        <p class="badge badge-primary m-2 mr-5 p-2 ">{{seats}} Seats Found For Students So Far! </p>
+        <p class="badge badge-primary m-2 mr-5 p-2 ">Currently {{courses}} Courses Are Being Tracked!</p>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card card-signin ml-auto mt-3 mb-5 col-lg-6">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">📋 Course Request Form 📋</h5>
+            <form class="form-signin mt-5 mb-5" method="post" novalidate>
+              {{ crform.hidden_tag() }}
+              <div class="form-label-group">
+                {{crform.email(class="form-control", placeholder="Email")}}
+                {{crform.email.label}}
+              </div>
 
-            <div class="form-label-group">
-              {{crform.department(class="form-control", placeholder="Course Department")}}
-              {{crform.department.label}}
-            </div>
+              <div class="form-label-group">
+                {{crform.department(class="form-control", placeholder="Course Department")}}
+                {{crform.department.label}}
+              </div>
 
-            <div class="form-label-group">
-              {{crform.course(class="form-control", placeholder="Course Number")}}
-              {{crform.course.label}}
-            </div>
+              <div class="form-label-group">
+                {{crform.course(class="form-control", placeholder="Course Number")}}
+                {{crform.course.label}}
+              </div>
 
-            <div class="form-label-group">
-              {{crform.section(class="form-control", placeholder="Course Section")}}
-              {{crform.section.label}}
-            </div>
+              <div class="form-label-group">
+                {{crform.section(class="form-control", placeholder="Course Section")}}
+                {{crform.section.label}}
+              </div>
 
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="register">Register</button>
-          </form>
-          <div class="row align-items-center" id="alertmsg">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                {% for category, message in messages %}
-                  {% if "register" == category[1] %}
-                    <div class="alert text-center alert-{{ category[0] }} mx-auto p-2" role="alert">
-                      {{ message }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="register">Register</button>
+            </form>
+            <div class="row align-items-center" id="alertmsg">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    {% if "register" == category[1] %}
+                      <div class="alert text-center alert-{{ category[0] }} mx-auto p-2" role="alert">
+                        {{ message }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
+      <div class="col">
 
-      <div class="card card-signin mr-auto mt-3 col-lg-6">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">💬 Information 💬</h5>
-          <p class="text-center"> Hey there! Tired of refreshing your course page over and over again trying to find a seat for your class? If your answer is YES, add your course to our system and be the first to snatch a spot. </p>
-          <p class="text-center"> Your course requests are polled every 10 minutes 24/7 on a reliable server to notify you when a seat is open! Sit back, relax, and make sure your email notifications are on. 😉</p>
-          <p class="text-center"> (Course requests will expire after 30 days. You will need to request again if you still haven't gotten into your course)
-        </div>
-      </div>
-
-      <div class="card card-signin mr-auto mt-4 mb-5 col-lg-6">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">❌ Remove Your Request Here ❌</h5>
-          <p class="text-center"> Input your Request ID from your course request email to remove it from the system. </p>
-          <form class="form-signin" method="post" novalidate>
-            {{ rrform.hidden_tag() }}
-            
-            <div class="form-label-group">
-              {{rrform.id(class="form-control", placeholder="Reference ID")}}
-              {{rrform.id.label}}
-            </div>
-
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="deregister">Deregister</button>
-          </form>
-          <div class="row align-items-center" id="alertmsg">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                {% for category, message in messages %}
-                  {% if "deregister" == category[1] %}
-                    <div class="alert text-center alert-{{ category[0] }} mx-auto p-2" role="alert">
-                      {{ message }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
+        <div class="card card-signin mr-auto mt-3 col-lg-6">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">💬 Information 💬</h5>
+            <p class="text-center"> Need to get into a course but its full? This is a <b> FREE </b>  service to notify you when a spot has opened up!</p>
+            <p class="text-center font-weight-bold"> How do I use this tool? </p>
+            <p class="text-left"> 1) Fill out all the fields for the Course Request Form </p>
+            <p class="text-left"> 2) Sit back, Relax 🏖, and wait for an email from us! </p>
           </div>
         </div>
+
+        <div class="card card-signin mr-auto mt-4 mb-5 col-lg-6">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">❌ Remove Your Request Here ❌</h5>
+            <p class="text-center"> Input your Request ID from your course request email to stop receiving notifications from us. </p>
+            <form class="form-signin" method="post" novalidate>
+              {{ rrform.hidden_tag() }}
+              
+              <div class="form-label-group">
+                {{rrform.id(class="form-control", placeholder="Reference ID")}}
+                {{rrform.id.label}}
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="deregister">Deregister</button>
+            </form>
+            <div class="row align-items-center" id="alertmsg">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    {% if "deregister" == category[1] %}
+                      <div class="alert text-center alert-{{ category[0] }} mx-auto p-2" role="alert">
+                        {{ message }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+
+
       </div>
 
-
     </div>
-
   </div>
-</div>
-
+</body>

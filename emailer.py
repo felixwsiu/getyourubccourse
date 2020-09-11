@@ -30,12 +30,14 @@ def sendCourseSeatEmail(receiver_email, dept, course, section, id):
 	html = """
 		 <html>
 			 <body>
-				 <h2>Nice!</h2>
-				 <h3>One or more seats has opened up in your desired course, register as soon as possible to snatch it away :) </h3>
-				 <h3>Link to your course: https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept={dept}&course={course}&section={section}
-				 <h3>Request Reference ID: {id}
-				 <h3>Goodluck on your studies!</h3>
-				 <h4>	- GetYourUBCCourse </h4>
+				 <h2>Quick 👋!</h2>
+				 <p>One or more seats has opened up in your desired course, register as soon as possible to snatch it away :) </p>
+				 <p>Link to your course: https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept={dept}&course={course}&section={section} </p>
+				 <p>Already got into your course and still receiving these emails? Head back to https://getyourubccourse-pro.herokuapp.com/ and remove your request with the ID below!</p>
+				 <p>Request Reference ID: {id}
+				 <p>Goodluck on your studies!</p>
+				 <p>Kind regards,</p>
+				 <p>	- GetYourUBCCourse </p>
 				 <p>
 				 	<img src="cid:image1">
 				 </p>
@@ -70,11 +72,12 @@ def sendDeletedCourseRequestEmail(receiver_email, dept, course, section):
 	html = """
 		 <html>
 			 <body>
-				 <h2>Wow!</h2>
-				 <h3>Your course request has expired! Still haven't got into your course? You're going to have to request again :( </h3>
-				 <h3>Link to the site: https://getyourubccourse-pro.herokuapp.com</h3>
-				 <h3>Goodluck on getting in your course!</h3>
-				 <h4>	- GetYourUBCCourse </h4>
+				 <h2>Hey 👋!</h2>
+				 <p>Your course request has expired! Still haven't got into your course? You're going to have to request again :( </p>
+				 <p>Link to the site: https://getyourubccourse-pro.herokuapp.com</p>
+				 <p>Goodluck on getting in your course!</p>
+				 <p>Kind regards,</p>
+				 <p>	- GetYourUBCCourse </p>
 				 <p>
 				 	<img src="cid:image1">
 				 </p>
@@ -99,6 +102,42 @@ def sendDeletedCourseRequestEmail(receiver_email, dept, course, section):
 	loginAndSend(receiver_email,msgRoot)
 
 
+# Sends an email to a user that has their premium status expired
+# @params {string} receiver_email : email of the receipient user
+def sendPremiumExpiryEmail(receiver_email):
+	html = """
+		 <html>
+			 <body>
+				 <h2>Wow, It has already been a whole year!</h2>
+				 <p>Your 👑 Premium Status 👑 has now expired! I hope you were able to get into all your courses with our service! </p>
+				 <p>Still want to have unlimited course requests and lightning fast course polling? </p>
+				 <p>Apply for Premium again at: https://getyourubccourse-pro.herokuapp.com</p>
+				 <p>Kind regards,</p>
+				 <p>	- GetYourUBCCourse </p>
+				 <p>
+				 	<img src="cid:image1">
+				 </p>
+			 </body>
+		 </html>
+	"""
+
+	msgRoot = MIMEMultipart('related')
+	msgRoot["Subject"] = f"GetYourUBCCourse - Your premium status has expired!"
+
+
+	msgHtml = MIMEText(html,"html")
+
+	img = open("emailpic/king.jpg", "rb").read()
+	msgImg = MIMEImage(img, "jpg")
+	msgImg.add_header("Content-ID", "<image1>")
+	msgImg.add_header("Content-Disposition", "inline", filename="emailpic/deleted.jpg")
+
+	msgRoot.attach(msgHtml)
+	msgRoot.attach(msgImg)
+
+	loginAndSend(receiver_email,msgRoot)
+
+
 # Establishes a connection and logins in to the email server, then sends the msgRoot as a string
 # @params {string} receiver_email : email of the receipient user
 # @params {MIMEMultiPart} msgRoot : a MIMEobject for the whole email
@@ -108,3 +147,6 @@ def loginAndSend(receiver_email,msgRoot):
 	    server.login(sender_email, password)
 	    server.sendmail(sender_email, receiver_email, msgRoot.as_string())
 
+
+
+sendPremiumExpiryEmail("felixs1999@gmail.com")

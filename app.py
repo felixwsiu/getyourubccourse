@@ -4,6 +4,7 @@ import coursescraper
 import emailer
 import databaseutil
 import metrics
+import premiumutil
 from forms import courseRequestForm, removeRequestForm
 
 app = Flask(__name__)
@@ -30,13 +31,25 @@ def courseSubmitSuccess(form):
 	section = form.section.data
 	email = form.email.data
 
+	if premiumutil.isPremiumUser(email):
+		premium = True
+	else:
+		premium = False;
+
+	print(premium)
+
 	if coursescraper.isCourseValid(dept, course, section):
-		if databaseutil.doesNotDuplicate(dept, course, section, email):
-			app.logger.info("New Course Request : " + dept + course + " " + section + ". Email: " + email + "\n")
-			databaseutil.addRequest(dept, course, section, email)
-			flash(dept + " " + course + " " + section +" was successfully added for you! 😊", ["success","register"])
+		if (not databaseutil.isMaxRequests(email)) or premium:
+			if databaseutil.doesNotDuplicate(dept, course, section, email):
+				app.logger.info("New Course Request : " + dept + course + " " + section + ". Email: " + email + "\n")
+				databaseutil.addRequest(dept, course, section, email, premium)
+				flash(dept + " " + course + " " + section +" was successfully added for you! 😊", ["success","register"])
+				if premium:
+					flash("This course request will poll at light-speed with your 👑 PREMIUM Status 👑" , ["success","register"])
+			else:
+				flash("Course request is duplicated, you're covered! 😎", ["warning","register"])
 		else:
-			flash("Course request is duplicated, you're covered! 😎", ["warning","register"])
+			flash("You have hit the free limit for course requests! 😔 Deregister an existing request or upgrade to Premium!" , ["warning","register"])
 	else:
 		flash("Course was not valid, double check for typos! 😔", ["danger","register"])
 
