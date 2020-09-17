@@ -35,6 +35,7 @@ $ pip install gunicorn
 $ pip install beautifulsoup4
 $ pip install APScheduler
 $ pip install wtforms[email]
+$ pip install azure-cosmos
 ```
 
 Some environmental variables will be needed, please set these to run this project locally:
