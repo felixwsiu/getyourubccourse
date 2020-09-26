@@ -1,5 +1,5 @@
 # GetYourUBCCourse
-![Page Image](/getyourubccoursepage.png?raw=true)
+![Page Image](https://github.com/felixwsiu/getyourubccourse/blob/master/getyourubccoursepage.jpg)
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
