@@ -1,5 +1,5 @@
 # GetYourUBCCourse
-![Page Image](getyourubccoursepage.png)
+![Page Image](/getyourubccoursepage.png?raw=true)
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
